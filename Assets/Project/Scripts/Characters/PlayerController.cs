@@ -9,6 +9,7 @@ public interface IPlayerController : IFighterController {
     void Movement();
     void SetInDialogue(bool isStarting);
     void Heal(float amount);
+    void AddMoney(int money);
 }
 
 public class PlayerController : FighterController, IPlayerController {
@@ -81,5 +82,9 @@ public class PlayerController : FighterController, IPlayerController {
 
     public void Heal(float amount) {
         Life += amount;
+    }
+
+    public void AddMoney(int money) {
+        _money += money;
     }
 }

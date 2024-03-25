@@ -7,7 +7,7 @@ public interface ILifeFountainController : ICollidableController {
 public class LifeFountainController : CollidableController, ILifeFountainController {
     private bool _isHealing;
 
-    public LifeFountainController(ICollidableView view) : base(view) {
+    public LifeFountainController(ILifeFountainView view) : base(view) {
     }
 
     public override void OnCollide(Collider2D c) {

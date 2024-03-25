@@ -23,4 +23,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
     public void HealPlayer(float amount) {
         playerView.PlayerController.Heal(amount);
     }
+
+    public void AddMoney(int money) {
+        playerView.PlayerController.AddMoney(money);
+    }
 }
