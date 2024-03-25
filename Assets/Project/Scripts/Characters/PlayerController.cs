@@ -8,6 +8,7 @@ public interface IPlayerController : IFighterController {
     Clothes GetCurrentClothes();
     void Movement();
     void SetInDialogue(bool isStarting);
+    void Heal(float amount);
 }
 
 public class PlayerController : FighterController, IPlayerController {
@@ -76,5 +77,9 @@ public class PlayerController : FighterController, IPlayerController {
 
     public void SetInDialogue(bool isStarting) {
         _inDialogue = isStarting;
+    }
+
+    public void Heal(float amount) {
+        Life += amount;
     }
 }

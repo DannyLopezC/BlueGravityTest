@@ -13,5 +13,9 @@ public class CollectableController : CollidableController, ICollectableControlle
         if (c.CompareTag("Player")) OnCollect(c);
     }
 
+    public override void OnExitCollide(Collider2D c) {
+        throw new System.NotImplementedException();
+    }
+
     protected virtual void OnCollect(Collider2D c) => Collected = true;
 }

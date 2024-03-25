@@ -6,8 +6,8 @@ public interface INpcController : ICollidableController {
 public class NpcController : CollidableController, INpcController {
     private readonly INpcView _view;
 
-    private static Dialogue FirstDialogue;
-    private static Dialogue GoodbyeDialogue;
+    private static Dialogue _firstDialogue;
+    private static Dialogue _goodbyeDialogue;
 
     public NpcController(INpcView view) : base(view) {
         _view = view;
@@ -19,7 +19,11 @@ public class NpcController : CollidableController, INpcController {
         }
     }
 
+    public override void OnExitCollide(Collider2D c) {
+        throw new System.NotImplementedException();
+    }
+
     private static void TriggerDialogue() {
-        DialogueManager.Instance.StartDialogue(FirstDialogue);
+        DialogueManager.Instance.StartDialogue(_firstDialogue);
     }
 }

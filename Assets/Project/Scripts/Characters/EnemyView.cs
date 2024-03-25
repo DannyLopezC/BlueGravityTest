@@ -59,4 +59,18 @@ public class EnemyView : FighterView, IEnemyView {
     public float GetRotationThreshHold() {
         return rotationThreshHold;
     }
+
+    public void OnCollisionEnter2D(Collision2D c) {
+        EnemyController.OnCollide(c.collider);
+    }
+
+    public void OnTriggerEnter2D(Collider2D c) {
+    }
+
+    public void OnCollisionExit2D(Collision2D c) {
+        EnemyController.OnExitCollide(c.collider);
+    }
+
+    public void OnTriggerExit2D(Collider2D c) {
+    }
 }

@@ -19,4 +19,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
     public Transform GetPlayerTransform() {
         return playerView.transform;
     }
+
+    public void HealPlayer(float amount) {
+        playerView.PlayerController.Heal(amount);
+    }
 }

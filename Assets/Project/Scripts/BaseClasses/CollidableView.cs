@@ -1,18 +1,17 @@
 using UnityEngine;
 
 public interface ICollidableView {
+    public void OnCollisionEnter2D(Collision2D c);
+    public void OnTriggerEnter2D(Collider2D c);
+
+    public void OnCollisionExit2D(Collision2D c);
+    public void OnTriggerExit2D(Collider2D c);
 }
 
-public class CollidableView : MonoBehaviour, ICollidableView {
-    private ICollidableController _collidableController;
+public abstract class CollidableView : MonoBehaviour, ICollidableView {
+    public abstract void OnCollisionEnter2D(Collision2D c);
+    public abstract void OnTriggerEnter2D(Collider2D c);
 
-    public ICollidableController CollidableController {
-        get { return _collidableController ??= new CollidableController(this); }
-    }
-
-    private void OnCollisionEnter2D(Collision2D c) => CollidableController.OnCollide(c.collider);
-    private void OnTriggerEnter2D(Collider2D c) => CollidableController.OnCollide(c);
-
-    private void OnCollisionExit2D(Collision2D c) => CollidableController.OnExitCollide(c.collider);
-    private void OnTriggerExit2D(Collider2D c) => CollidableController.OnExitCollide(c);
+    public abstract void OnCollisionExit2D(Collision2D c);
+    public abstract void OnTriggerExit2D(Collider2D c);
 }

@@ -1,10 +1,5 @@
 public interface ICollectableView : ICollidableView {
 }
 
-public class CollectableView : CollidableView, ICollectableView {
-    private ICollectableController _collectableController;
-
-    public ICollectableController CollectableController {
-        get { return _collectableController ??= new CollectableController(this); }
-    }
+public abstract class CollectableView : CollidableView, ICollectableView {
 }
