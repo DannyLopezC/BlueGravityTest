@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3000231598912083576}
   m_Layer: 0
-  m_Name: enemy_with_home
+  m_Name: Enemy_with_home
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

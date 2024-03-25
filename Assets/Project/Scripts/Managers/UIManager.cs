@@ -9,8 +9,8 @@ using TMPro;
 public class UIManager : MonoBehaviourSingleton<UIManager> {
     public MenuView MenuView;
     public Button inventoryButton;
-    public bool menuOpened = false;
-    public bool menuChanging = false;
+    private bool _menuOpened = false;
+    private bool _menuChanging = false;
     public Animator menuAnimator;
 
     public bool inUI;
@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     //public TMP_Text moneyAmount;
     public TMP_Text hudMoney;
     public Image lifeBar;
-    public Image menuLifeBar;
 
     public Weapon currentWeapon;
     public float playerMaxLife;
@@ -28,14 +27,13 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     public int weaponsAmount;
 
     public ShopView ShopView;
-    public bool shopChanging = false;
+    private bool _shopChanging = false;
     public Animator shopAnimator;
-    public bool inShop;
-    public bool shopOpened = false;
+    private bool _inShop;
+    private bool _shopOpened = false;
 
 
     private void Start() {
-        // weaponSprite.sprite = _playerAttackViewComponent.weapons[_playerAttackViewComponent.Equipped].sprite;
         UpdateUIValues();
 
         ShopView.ShopController.SetSellItems();
@@ -46,10 +44,10 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     public void OnExit() => Application.Quit();
 
     private void Update() {
-        if (!shopOpened && GameManager.Instance.GetInDialogue() && !inShop)
+        if (!_shopOpened && GameManager.Instance.GetInDialogue() && !_inShop)
             if (Input.GetKeyDown(KeyCode.Escape))
-                OnInventory(!menuOpened);
-        if (shopOpened && inShop)
+                OnInventory(!_menuOpened);
+        if (_shopOpened && _inShop)
             if (Input.GetKeyDown(KeyCode.Escape))
                 OnShop(false);
 
@@ -57,33 +55,33 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     }
 
     public void OnShop(bool open) {
-        if (shopChanging) return;
+        if (_shopChanging) return;
 
         Image buttonImage = inventoryButton.gameObject.GetComponent<Image>();
 
         if (open) {
-            shopChanging = true;
+            _shopChanging = true;
             buttonImage.DOFade(0, 0.2f)
                 .OnComplete(() => {
                     inventoryButton.gameObject.SetActive(!open);
-                    shopChanging = false;
+                    _shopChanging = false;
                 });
 
             shopAnimator.SetTrigger("show");
-            inShop = true;
-            shopOpened = true;
+            _inShop = true;
+            _shopOpened = true;
         }
         else {
-            shopChanging = true;
+            _shopChanging = true;
             buttonImage.DOFade(100, 0.2f)
                 .OnComplete(() => {
                     inventoryButton.gameObject.SetActive(!open);
-                    shopChanging = false;
+                    _shopChanging = false;
                 });
 
             shopAnimator.SetTrigger("hide");
-            inShop = false;
-            shopOpened = false;
+            _inShop = false;
+            _shopOpened = false;
             DialogueManager.Instance.EndDialogue(false, NpcController.GoodbyeDialogue);
         }
     }
@@ -98,33 +96,33 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     }
 
     public void OnInventory(bool open) {
-        if (menuChanging) return;
+        if (_menuChanging) return;
 
         Image buttonImage = inventoryButton.gameObject.GetComponent<Image>();
 
         if (open) {
-            menuChanging = true;
+            _menuChanging = true;
             buttonImage.DOFade(0, 0.2f)
                 .OnComplete(() => {
                     inventoryButton.gameObject.SetActive(!open);
-                    menuChanging = false;
+                    _menuChanging = false;
                 });
 
             menuAnimator.SetTrigger("show");
             inUI = true;
-            menuOpened = true;
+            _menuOpened = true;
         }
         else {
-            menuChanging = true;
+            _menuChanging = true;
             buttonImage.DOFade(100, 0.2f)
                 .OnComplete(() => {
                     inventoryButton.gameObject.SetActive(!open);
-                    menuChanging = false;
+                    _menuChanging = false;
                 });
 
             menuAnimator.SetTrigger("hide");
             inUI = false;
-            menuOpened = false;
+            _menuOpened = false;
         }
     }
 }

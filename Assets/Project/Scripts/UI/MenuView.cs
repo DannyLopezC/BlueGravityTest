@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -22,6 +23,10 @@ public class MenuView : MonoBehaviour, IMenuView {
 
     public IMenuController MenuController {
         get { return _menuController ??= new MenuController(this); }
+    }
+
+    private void Start() {
+        weaponSprite.sprite = GameManager.Instance.GetPlayerWeapons()[GameManager.Instance.GetWeaponId()].sprite;
     }
 
     public void SettingClothesSprites(int nextId, Clothes replaceClothes) {
