@@ -16,7 +16,7 @@ public class FighterController : IFighterController {
     }
 
     private readonly float _maxLife;
-    private float _pushRecoverySpeed = 0.2f;
+    protected float PushRecoverySpeed = 0.2f;
 
     //Inmunity
 

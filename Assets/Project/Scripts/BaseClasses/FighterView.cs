@@ -5,7 +5,7 @@ public interface IFighterView {
 }
 
 public class FighterView : MonoBehaviour, IFighterView {
-    [SerializeField] private float maxLife;
+    [SerializeField] protected float maxLife;
 
     private IFighterController _fighterController;
 

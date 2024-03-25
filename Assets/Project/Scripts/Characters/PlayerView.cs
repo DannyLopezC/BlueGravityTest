@@ -1,23 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public interface IPlayerView : IFighterView
-{
-
+public interface IPlayerView : IFighterView {
+    void ChangeClothing(int id);
+    List<Clothes> GetClothesList();
 }
 
-public class PlayerView : FighterView, IPlayerView
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class PlayerView : FighterView, IPlayerView {
+    [SerializeField] private List<Clothes> clothes;
+    public SpriteRenderer spriteRenderer;
+
+    private IPlayerController _playerController;
+
+    public IPlayerController PlayerController {
+        get { return _playerController ??= new PlayerController(this, maxLife); }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Awake() {
+        GameManager.Instance.DialogueEvent += OnDialogue;
+    }
+
+    private void OnDialogue(bool isStarting) {
+        PlayerController.SetInDialogue(isStarting);
+    }
+
+    public void ChangeClothing(int id) {
+        PlayerController.ChangeClothing(id);
+
+        spriteRenderer.sprite = PlayerController.GetCurrentClothes().sprite;
+    }
+
+    public void ChangeClothingV2(int id) {
+        PlayerController.ChangeClothingV2(id);
+
+        spriteRenderer.sprite = PlayerController.GetCurrentClothes().sprite;
+    }
+
+    public List<Clothes> GetClothesList() {
+        return clothes;
+    }
+
+    private void FixedUpdate() {
+        PlayerController.Movement();
+    }
+
+    private void OnDestroy() {
+        GameManager.Instance.DialogueEvent -= OnDialogue;
     }
 }

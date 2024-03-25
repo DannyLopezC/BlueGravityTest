@@ -1,28 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
-{
+public interface IDialogueManager {
+    void StartDialogue(Dialogue dialogue);
+}
+
+public class DialogueManager : MonoBehaviourSingleton<DialogueManager>, IDialogueManager {
     public TMP_Text nameText;
     public TMP_Text dialogueText;
     private List<string> _sentences;
     public GameObject exitButton, shopButton;
 
-    public bool ButtonsOff
-    {
+    private bool _inDialogue;
+
+    public bool ButtonsOff {
         get => _buttonsOff;
-        set
-        {
-            if (!value)
-            {
+        set {
+            if (!value) {
                 exitButton.SetActive(true);
                 shopButton.SetActive(true);
             }
-            else
-            {
+            else {
                 exitButton.SetActive(false);
                 shopButton.SetActive(false);
             }
@@ -33,24 +33,16 @@ public class DialogueManager : MonoBehaviour
 
     private bool _buttonsOff;
 
-    public GameManager gm;
-
     public Animator animator;
     private static readonly int Show = Animator.StringToHash("show");
     private static readonly int Hide = Animator.StringToHash("hide");
 
-    private void Start()
-    {
-        _sentences = new List<string>();
-        gm = GameManager.instance;
-    }
-
-    public void StartDialogue(Dialogue dialogue)
-    {
+    public void StartDialogue(Dialogue dialogue) {
         nameText.text = dialogue.name;
 
         _sentences.Clear();
-        gm.inDialogue = true;
+        _inDialogue = true;
+        GameManager.Instance.OnDialogue(true);
 
         foreach (string s in dialogue.sentences) _sentences.Add(s);
 
@@ -58,46 +50,41 @@ public class DialogueManager : MonoBehaviour
         DisplaySentence();
     }
 
-    private void DisplaySentence()
-    {
+    private void DisplaySentence() {
         string s = _sentences[Random.Range(0, _sentences.Count - 1)];
 
         StopAllCoroutines();
         StartCoroutine(Type(s));
     }
 
-    IEnumerator Type(string s, bool goodbye = false)
-    {
+    private IEnumerator Type(string s, bool goodbye = false) {
         ButtonsOff = goodbye;
-        gm.inDialogue = true;
+        _inDialogue = true;
+        GameManager.Instance.OnDialogue(true);
         dialogueText.text = "";
-        foreach (char l in s)
-        {
+        foreach (char l in s) {
             dialogueText.text += l;
             yield return new WaitForSeconds(0.05f);
         }
 
-        if (goodbye)
-        {
+        if (goodbye) {
             yield return new WaitForSeconds(1.5f);
             animator.SetTrigger(Hide);
-            gm.inDialogue = false;
+            _inDialogue = false;
+            GameManager.Instance.OnDialogue(false);
             _buttonsOff = false;
         }
     }
 
-    public void EndDialogue(bool accept)
-    {
-        if (accept)
-        {
+    public void EndDialogue(bool accept, Dialogue goodbyeDialogue) {
+        if (accept) {
             animator.SetTrigger(Hide);
-            gm.uIManager.OnShop(true);
-            gm.inDialogue = false;
+            UIManager.Instance.OnShop(true);
+            GameManager.Instance.OnDialogue(false);
         }
-        else
-        {
-            if (!gm.inDialogue) animator.SetTrigger(Show);
-            string s = gm.goodbyeDialogue.sentences[Random.Range(0, gm.goodbyeDialogue.sentences.Count - 1)];
+        else {
+            if (!_inDialogue) animator.SetTrigger(Show);
+            string s = goodbyeDialogue.sentences[Random.Range(0, goodbyeDialogue.sentences.Count - 1)];
             StopAllCoroutines();
             StartCoroutine(Type(s, true));
         }
