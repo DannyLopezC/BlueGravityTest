@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMotor : MonoBehaviour
-{
+public class CameraManager : MonoBehaviour {
     public Transform lookAt;
     public float xbound = 0.15f;
     public float ybound = 0.05f;
 
-    private void LateUpdate()
-    {
+    private void LateUpdate() {
         Vector3 delta = Vector3.zero;
 
         //x bounds 

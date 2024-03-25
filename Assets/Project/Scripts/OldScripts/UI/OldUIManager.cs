@@ -62,15 +62,15 @@ public class OldUIManager : MonoBehaviour {
 
     public Scrollbar scrollBar;
 
-    private Attack playerAttackComponent;
+    private AttackView _playerAttackViewComponent;
     private GameManager gm;
 
     #endregion
 
     private void Start() {
         gm = GameManager.instance;
-        playerAttackComponent = gm.player.GetComponentInChildren<Attack>();
-        weaponSprite.sprite = playerAttackComponent.weapons[playerAttackComponent.Equipped].sprite;
+        _playerAttackViewComponent = gm.player.GetComponentInChildren<AttackView>();
+        weaponSprite.sprite = _playerAttackViewComponent.weapons[_playerAttackViewComponent.Equipped].sprite;
         UpdateUIValues();
 
         SetSellItems();
@@ -91,41 +91,41 @@ public class OldUIManager : MonoBehaviour {
     #region buttons
 
     public void OnNextWeapon() {
-        Weapon nextWeapon = playerAttackComponent.weapons[playerAttackComponent.Equipped];
+        Weapon nextWeapon = _playerAttackViewComponent.weapons[_playerAttackViewComponent.Equipped];
         int nextId = 0;
 
-        for (int i = 0; i < playerAttackComponent.weapons.Count; i++) {
-            if (playerAttackComponent.currentWeapon.id == playerAttackComponent.weapons[i].id)
+        for (int i = 0; i < _playerAttackViewComponent.weapons.Count; i++) {
+            if (_playerAttackViewComponent.currentWeapon.id == _playerAttackViewComponent.weapons[i].id)
                 nextId = i + 1;
         }
 
         //going back to first if is the last
-        if (nextId > playerAttackComponent.weapons.Count - 1) nextId = 0;
+        if (nextId > _playerAttackViewComponent.weapons.Count - 1) nextId = 0;
 
-        nextWeapon = playerAttackComponent.weapons[nextId];
+        nextWeapon = _playerAttackViewComponent.weapons[nextId];
 
         //setting sprites
         weaponSprite.sprite = nextWeapon.sprite;
-        playerAttackComponent.ChangeWeaponV2(nextId);
+        _playerAttackViewComponent.ChangeWeaponV2(nextId);
     }
 
     public void OnBackWeapon() {
-        Weapon backWeapon = playerAttackComponent.weapons[playerAttackComponent.Equipped];
+        Weapon backWeapon = _playerAttackViewComponent.weapons[_playerAttackViewComponent.Equipped];
         int nextId = 0;
 
-        for (int i = 0; i < playerAttackComponent.weapons.Count; i++) {
-            if (playerAttackComponent.currentWeapon.id == playerAttackComponent.weapons[i].id)
+        for (int i = 0; i < _playerAttackViewComponent.weapons.Count; i++) {
+            if (_playerAttackViewComponent.currentWeapon.id == _playerAttackViewComponent.weapons[i].id)
                 nextId = i - 1;
         }
 
         //going to last if is the first
-        if (nextId < 0) nextId = playerAttackComponent.weapons.Count - 1;
+        if (nextId < 0) nextId = _playerAttackViewComponent.weapons.Count - 1;
 
-        backWeapon = playerAttackComponent.weapons[nextId];
+        backWeapon = _playerAttackViewComponent.weapons[nextId];
 
         //setting sprites
         weaponSprite.sprite = backWeapon.sprite;
-        playerAttackComponent.ChangeWeaponV2(nextId);
+        _playerAttackViewComponent.ChangeWeaponV2(nextId);
     }
 
     public void OnNextSkin() {
@@ -174,10 +174,10 @@ public class OldUIManager : MonoBehaviour {
         hudMoney.text = gm.player.money.ToString();
 
         skinsAmount.text = gm.player.clothes.Count.ToString();
-        weaponsAmount.text = playerAttackComponent.weapons.Count.ToString();
+        weaponsAmount.text = _playerAttackViewComponent.weapons.Count.ToString();
 
-        damageAmount.text = playerAttackComponent.currentWeapon.damage.ToString();
-        forceAmount.text = playerAttackComponent.currentWeapon.force.ToString();
+        damageAmount.text = _playerAttackViewComponent.currentWeapon.damage.ToString();
+        forceAmount.text = _playerAttackViewComponent.currentWeapon.force.ToString();
 
         menuLifeBar.fillAmount = gm.player.life / gm.player.maxLife;
         lifeBar.fillAmount = gm.player.life / gm.player.maxLife;
@@ -210,16 +210,16 @@ public class OldUIManager : MonoBehaviour {
         }
 
         //set weapons to sell
-        for (int i = 0; i < playerAttackComponent.weapons.Count; i++) {
+        for (int i = 0; i < _playerAttackViewComponent.weapons.Count; i++) {
             ShopItem sp = Instantiate(shopWeaponPrefab, sellContent).GetComponent<ShopItem>();
-            sp.damage.text = playerAttackComponent.weapons[i].damage.ToString();
-            sp.force.text = playerAttackComponent.weapons[i].force.ToString();
-            sp.price.text = playerAttackComponent.weapons[i].price.ToString() + "$";
-            sp.priceNum = playerAttackComponent.weapons[i].price;
-            sp.itemId = playerAttackComponent.weapons[i].id;
+            sp.damage.text = _playerAttackViewComponent.weapons[i].damage.ToString();
+            sp.force.text = _playerAttackViewComponent.weapons[i].force.ToString();
+            sp.price.text = _playerAttackViewComponent.weapons[i].price.ToString() + "$";
+            sp.priceNum = _playerAttackViewComponent.weapons[i].price;
+            sp.itemId = _playerAttackViewComponent.weapons[i].id;
             sp.isWeapon = true;
 
-            sp.weaponImage.sprite = playerAttackComponent.weapons[i].sprite;
+            sp.weaponImage.sprite = _playerAttackViewComponent.weapons[i].sprite;
 
             sellWeapons.Add(sp);
         }
@@ -306,9 +306,9 @@ public class OldUIManager : MonoBehaviour {
             weaponsToAdd.Add(availableWeapons[i]);
         }
 
-        for (int i = 0; i < playerAttackComponent.weapons.Count; i++) {
+        for (int i = 0; i < _playerAttackViewComponent.weapons.Count; i++) {
             for (int j = 0; j < weaponsToAdd.Count; j++) {
-                if (playerAttackComponent.weapons[i] == weaponsToAdd[j]) {
+                if (_playerAttackViewComponent.weapons[i] == weaponsToAdd[j]) {
                     weaponsToAdd.Remove(weaponsToAdd[j]);
                 }
             }
@@ -353,16 +353,16 @@ public class OldUIManager : MonoBehaviour {
         if (currentShopItem == null) return;
 
         if (currentShopItem.isWeapon) {
-            if (playerAttackComponent.weapons.Count <= 1) {
+            if (_playerAttackViewComponent.weapons.Count <= 1) {
                 gm.ShowText($"You have only one item of this type", 50, Color.yellow, gm.player.transform.position,
                     Vector3.up * Random.Range(30, 50), 2f);
                 return;
             }
 
-            Weapon w = playerAttackComponent.weapons.Find(_w => _w.id == currentShopItem.itemId);
-            if (w != null) playerAttackComponent.weapons.Remove(w);
+            Weapon w = _playerAttackViewComponent.weapons.Find(_w => _w.id == currentShopItem.itemId);
+            if (w != null) _playerAttackViewComponent.weapons.Remove(w);
 
-            if (playerAttackComponent.weapons.Count == 1) playerAttackComponent.ChangeWeaponV2(0);
+            if (_playerAttackViewComponent.weapons.Count == 1) _playerAttackViewComponent.ChangeWeaponV2(0);
         }
         else {
             if (gm.player.clothes.Count <= 1) {
@@ -395,7 +395,7 @@ public class OldUIManager : MonoBehaviour {
 
         if (currentShopItem.isWeapon) {
             Weapon W = availableWeapons.Find(_w => _w.id == currentShopItem.itemId);
-            if (W != null) playerAttackComponent.weapons.Add(W);
+            if (W != null) _playerAttackViewComponent.weapons.Add(W);
         }
         else {
             Clothes c = availableClothes.Find(_c => _c.id == currentShopItem.itemId);

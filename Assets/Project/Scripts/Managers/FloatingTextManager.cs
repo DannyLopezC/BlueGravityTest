@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class FloatingTextManager : MonoBehaviour
-{
-    public class FloatingText
-    {
+public class FloatingTextManager : MonoBehaviourSingleton<FloatingTextManager> {
+    public class FloatingText {
         public bool active;
         public GameObject go;
         public TMP_Text txt;
@@ -15,21 +13,18 @@ public class FloatingTextManager : MonoBehaviour
         public float lastShown;
 
         //comment
-        public void Show()
-        {
+        public void Show() {
             active = true;
             lastShown = Time.time;
             go.SetActive(active);
         }
 
-        public void Hide()
-        {
+        public void Hide() {
             active = false;
             go.SetActive(active);
         }
 
-        public void Update()
-        {
+        public void Update() {
             if (!active) return;
 
             if (Time.time - lastShown > duration) Hide();
@@ -43,13 +38,11 @@ public class FloatingTextManager : MonoBehaviour
 
     private List<FloatingText> _floatingTexts = new List<FloatingText>();
 
-    private void Update()
-    {
+    private void Update() {
         foreach (FloatingText i in _floatingTexts) i.Update();
     }
 
-    public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
-    {
+    public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
         FloatingText _ft = GetFloatingText();
 
         _ft.txt.text = msg;
@@ -64,12 +57,10 @@ public class FloatingTextManager : MonoBehaviour
         _ft.Show();
     }
 
-    private FloatingText GetFloatingText()
-    {
+    private FloatingText GetFloatingText() {
         FloatingText _ft = _floatingTexts.Find(t => !t.active);
 
-        if (_ft == null)
-        {
+        if (_ft == null) {
             _ft = new FloatingText();
             _ft.go = Instantiate(textPrefab, textContainer.transform, true);
             _ft.txt = _ft.go.GetComponent<TMP_Text>();

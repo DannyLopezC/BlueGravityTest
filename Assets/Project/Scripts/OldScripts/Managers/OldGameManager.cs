@@ -40,7 +40,7 @@ public class OldGameManager : MonoBehaviour {
     public void DeselectAllSellItems(ShopItem origin) => uIManager.DeselectAllSellItems(origin);
 
     [Button]
-    public void ChangeWeapon(int id) => player.GetComponentInChildren<Attack>().Equipped = id;
+    public void ChangeWeapon(int id) => player.GetComponentInChildren<AttackView>().Equipped = id;
 
     [Button]
     public void ChangeClothing(int id) => player.ClothesId = id;
