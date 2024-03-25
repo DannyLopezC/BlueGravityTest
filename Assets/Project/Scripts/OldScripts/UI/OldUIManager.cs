@@ -241,26 +241,26 @@ public class OldUIManager : MonoBehaviour {
         //de activate sell
         for (int i = 0; i < sellClothes.Count; i++) {
             if (sellClothes[i].id != origin.id) {
-                sellClothes[i].selected = false;
+                sellClothes[i].Selected = false;
             }
         }
 
         for (int i = 0; i < sellWeapons.Count; i++) {
             if (sellWeapons[i].id != origin.id) {
-                sellWeapons[i].selected = false;
+                sellWeapons[i].Selected = false;
             }
         }
 
         //de activate buy
         for (int i = 0; i < buyClothes.Count; i++) {
             if (buyClothes[i].id != origin.id) {
-                buyClothes[i].selected = false;
+                buyClothes[i].Selected = false;
             }
         }
 
         for (int i = 0; i < buyWeapons.Count; i++) {
             if (buyWeapons[i].id != origin.id) {
-                buyWeapons[i].selected = false;
+                buyWeapons[i].Selected = false;
             }
         }
     }

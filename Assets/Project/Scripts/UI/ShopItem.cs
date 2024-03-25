@@ -5,8 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class ShopItem : MonoBehaviour
-{
+public class ShopItem : MonoBehaviour {
     public TMP_Text damage;
     public TMP_Text force;
     public TMP_Text price;
@@ -23,27 +22,21 @@ public class ShopItem : MonoBehaviour
 
     private bool _selected;
 
-    public bool selected
-    {
+    public bool Selected {
         get => _selected;
-        set
-        {
+        set {
             _selected = value;
             Select();
         }
     }
 
-    public void Select(bool origin = false)
-    {
-        if (origin)
-        {
-            GameManager.instance.DeselectAllSellItems(this);
+    public void Select(bool origin = false) {
+        if (origin) {
+            GameManager.Instance.DeselectAllSellItems(this);
             selectedImage.gameObject.SetActive(true);
         }
-        else
-        {
+        else {
             selectedImage.gameObject.SetActive(false);
         }
     }
-
 }
