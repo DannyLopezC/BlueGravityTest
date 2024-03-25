@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager> {
+    [SerializeField] private PlayerView playerView;
+
     public void ShowText(string s, int i, Color white, object position, Vector3 range, float f) {
     }
 
@@ -12,5 +14,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
 
     public void OnDialogue(bool isStarting) {
         DialogueEvent?.Invoke(isStarting);
+    }
+
+    public Transform GetPlayerTransform() {
+        return playerView.transform;
     }
 }
