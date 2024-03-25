@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IPlayerController : IFighterController {
@@ -10,6 +11,7 @@ public interface IPlayerController : IFighterController {
     void SetInDialogue(bool isStarting);
     void Heal(float amount);
     void AddMoney(int money);
+    void UpdateUIValues();
 }
 
 public class PlayerController : FighterController, IPlayerController {
@@ -27,6 +29,7 @@ public class PlayerController : FighterController, IPlayerController {
     public PlayerController(IPlayerView view, float maxLife) : base(view, maxLife) {
         ClothesId = 0;
         _view = view;
+        UIManager.Instance.playerMaxLife = maxLife;
     }
 
     private int _clothesId;
@@ -82,9 +85,17 @@ public class PlayerController : FighterController, IPlayerController {
 
     public void Heal(float amount) {
         Life += amount;
+        UpdateUIValues();
     }
 
     public void AddMoney(int money) {
         _money += money;
+        UpdateUIValues();
+    }
+
+    public void UpdateUIValues() {
+        UIManager.Instance.money = _money;
+        UIManager.Instance.playerLife = Life;
+        UIManager.Instance.skinsAmount = _view.GetClothesList().Count;
     }
 }

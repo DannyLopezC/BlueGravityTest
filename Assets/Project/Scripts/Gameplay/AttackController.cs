@@ -6,6 +6,7 @@ public interface IAttackController : ICollidableController {
     void ChangeWeaponV2(int equip);
     Weapon GetCurrenWeapon();
     void Attack();
+    void UpdateUIValues();
 }
 
 public class AttackController : CollidableController, IAttackController {
@@ -44,10 +45,12 @@ public class AttackController : CollidableController, IAttackController {
         _currentWeapon = _view.GetWeapons().Find(w => w.id == equip);
 
         if (_currentWeapon == null) _currentWeapon = _view.GetWeapons()[0];
+        UpdateUIValues();
     }
 
     public void ChangeWeaponV2(int id) {
         _currentWeapon = _view.GetWeapons()[id];
+        UpdateUIValues();
     }
 
     public Weapon GetCurrenWeapon() {
@@ -56,11 +59,17 @@ public class AttackController : CollidableController, IAttackController {
 
     public void SetEquipped(int weaponIndex) {
         Equipped = 0;
+        UpdateUIValues();
     }
 
     public void Attack() {
         if (!(Time.time - _lastSwing > _view.GetCooldown())) return;
         _lastSwing = Time.deltaTime;
         _view.Swing();
+    }
+
+    public void UpdateUIValues() {
+        UIManager.Instance.currentWeapon = _currentWeapon;
+        UIManager.Instance.skinsAmount = _view.GetWeapons().Count;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager> {
     [SerializeField] private PlayerView playerView;
+    [SerializeField] private AttackView attackView;
 
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) =>
         FloatingTextManager.Instance.Show(msg, fontSize, color, position, motion, duration);
@@ -19,6 +20,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
 
     public Transform GetPlayerTransform() {
         return playerView.transform;
+    }
+
+    public List<Clothes> GetPlayerClothes() {
+        return playerView.GetClothesList();
+    }
+
+    public List<Weapon> GetPlayerWeapons() {
+        return attackView.GetWeapons();
     }
 
     public void HealPlayer(float amount) {

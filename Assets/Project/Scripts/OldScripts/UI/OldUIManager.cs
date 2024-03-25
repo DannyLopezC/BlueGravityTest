@@ -11,7 +11,6 @@ public class OldUIManager : MonoBehaviour {
     #region variables
 
     [BoxGroup("HUD")] public Button inventoryButton;
-    [BoxGroup("HUD")] public Image lifeBar;
     [BoxGroup("HUD")] public TMP_Text hudMoney;
 
     [BoxGroup("Menu")] public GameObject menuGo;
@@ -20,48 +19,28 @@ public class OldUIManager : MonoBehaviour {
     [BoxGroup("Menu")] public Animator menuAnimator;
     [BoxGroup("Menu")] public Image weaponSprite;
     [BoxGroup("Menu")] public Image skinSprite;
-    [BoxGroup("Menu")] public TMP_Text moneyAmount;
     [BoxGroup("Menu")] public TMP_Text skinsAmount;
     [BoxGroup("Menu")] public TMP_Text weaponsAmount;
     [BoxGroup("Menu")] public Image menuLifeBar;
     [BoxGroup("Menu")] public TMP_Text damageAmount;
     [BoxGroup("Menu")] public TMP_Text forceAmount;
 
-    [BoxGroup("Shop")] public GameObject shopWeaponPrefab;
-    [BoxGroup("Shop")] public GameObject shopClothesPrefab;
     [BoxGroup("Shop")] public ShopItem currentShopItem;
-    [BoxGroup("Shop")] public TMP_Text moneyShopAmount;
+    
     [BoxGroup("Shop")] public Animator shopAnimator;
     [BoxGroup("Shop")] public bool shopOpened = false;
     [BoxGroup("Shop")] public bool shopChanging = false;
     [BoxGroup("Shop")] public GameObject shopGo;
 
-    [InlineEditor, BoxGroup("Shop/AvailableItems")]
-    public List<Weapon> availableWeapons;
+    
 
-    [InlineEditor, BoxGroup("Shop/AvailableItems")]
-    public List<Clothes> availableClothes;
 
-    [InlineEditor, BoxGroup("Shop/Selling")]
-    public List<ShopItem> sellClothes;
-
-    [InlineEditor, BoxGroup("Shop/Selling")]
-    public List<ShopItem> sellWeapons;
-
-    [BoxGroup("Shop/Selling")] public Transform sellContent;
     [BoxGroup("Shop/Selling")] public GameObject sellPanel;
 
-    [InlineEditor, BoxGroup("Shop/Buying")]
-    public List<ShopItem> buyClothes;
+    
 
-    [InlineEditor, BoxGroup("Shop/Buying")]
-    public List<ShopItem> buyWeapons;
-
-    [BoxGroup("Shop/Buying")] public Transform buyContent;
     [BoxGroup("Shop/Buying")] public GameObject buyPanel;
-
-    public Scrollbar scrollBar;
-
+    
     private AttackView _playerAttackViewComponent;
     private GameManager gm;
 
@@ -188,53 +167,6 @@ public class OldUIManager : MonoBehaviour {
 
     #region shop
 
-    public void SetSellItems() {
-        sellClothes.Clear();
-        sellWeapons.Clear();
-
-        for (int i = 0; i < sellContent.childCount; i++) {
-            Destroy(sellContent.GetChild(i).gameObject);
-        }
-
-        //set skins to sell
-        for (int i = 0; i < gm.player.clothes.Count; i++) {
-            ShopItem sp = Instantiate(shopClothesPrefab, sellContent).GetComponent<ShopItem>();
-            sp.price.text = gm.player.clothes[i].price.ToString() + "$";
-            sp.priceNum = gm.player.clothes[i].price;
-            sp.itemId = gm.player.clothes[i].id;
-            sp.isWeapon = false;
-
-            sp.weaponImage.sprite = gm.player.clothes[i].sprite;
-
-            sellClothes.Add(sp);
-        }
-
-        //set weapons to sell
-        for (int i = 0; i < _playerAttackViewComponent.weapons.Count; i++) {
-            ShopItem sp = Instantiate(shopWeaponPrefab, sellContent).GetComponent<ShopItem>();
-            sp.damage.text = _playerAttackViewComponent.weapons[i].damage.ToString();
-            sp.force.text = _playerAttackViewComponent.weapons[i].force.ToString();
-            sp.price.text = _playerAttackViewComponent.weapons[i].price.ToString() + "$";
-            sp.priceNum = _playerAttackViewComponent.weapons[i].price;
-            sp.itemId = _playerAttackViewComponent.weapons[i].id;
-            sp.isWeapon = true;
-
-            sp.weaponImage.sprite = _playerAttackViewComponent.weapons[i].sprite;
-
-            sellWeapons.Add(sp);
-        }
-
-        for (int i = 0; i < sellClothes.Count; i++) {
-            sellClothes[i].id = i;
-        }
-
-        for (int i = 0; i < sellWeapons.Count; i++) {
-            sellWeapons[i].id = sellClothes.Count + i;
-        }
-
-        scrollBar.value = 100;
-    }
-
     public void DeselectAllSellItems(ShopItem origin) {
         currentShopItem = origin;
 
@@ -265,79 +197,7 @@ public class OldUIManager : MonoBehaviour {
         }
     }
 
-    public void SetBuyItems() {
-        buyClothes.Clear();
-        buyWeapons.Clear();
-
-        for (int i = 0; i < buyContent.childCount; i++) {
-            Destroy(buyContent.GetChild(i).gameObject);
-        }
-
-        List<Clothes> clothesToAdd = new List<Clothes>();
-
-        for (int i = 0; i < availableClothes.Count; i++) {
-            clothesToAdd.Add(availableClothes[i]);
-        }
-
-        //add items to the sell list
-        for (int i = 0; i < gm.player.clothes.Count; i++) {
-            for (int j = 0; j < clothesToAdd.Count; j++) {
-                if (gm.player.clothes[i] == clothesToAdd[j]) {
-                    clothesToAdd.Remove(clothesToAdd[j]);
-                }
-            }
-        }
-
-        for (int i = 0; i < clothesToAdd.Count; i++) {
-            ShopItem sp = Instantiate(shopClothesPrefab, buyContent).GetComponent<ShopItem>();
-            sp.price.text = clothesToAdd[i].price.ToString() + "$";
-            sp.priceNum = clothesToAdd[i].price;
-            sp.itemId = clothesToAdd[i].id;
-            sp.isWeapon = false;
-
-            sp.weaponImage.sprite = clothesToAdd[i].sprite;
-
-            buyClothes.Add(sp);
-        }
-
-        List<Weapon> weaponsToAdd = new List<Weapon>();
-
-        for (int i = 0; i < availableWeapons.Count; i++) {
-            weaponsToAdd.Add(availableWeapons[i]);
-        }
-
-        for (int i = 0; i < _playerAttackViewComponent.weapons.Count; i++) {
-            for (int j = 0; j < weaponsToAdd.Count; j++) {
-                if (_playerAttackViewComponent.weapons[i] == weaponsToAdd[j]) {
-                    weaponsToAdd.Remove(weaponsToAdd[j]);
-                }
-            }
-        }
-
-        for (int i = 0; i < weaponsToAdd.Count; i++) {
-            ShopItem sp = Instantiate(shopWeaponPrefab, buyContent).GetComponent<ShopItem>();
-            sp.damage.text = weaponsToAdd[i].damage.ToString();
-            sp.force.text = weaponsToAdd[i].force.ToString();
-            sp.price.text = weaponsToAdd[i].price.ToString() + "$";
-            sp.priceNum = weaponsToAdd[i].price;
-            sp.itemId = weaponsToAdd[i].id;
-            sp.isWeapon = true;
-
-            sp.weaponImage.sprite = weaponsToAdd[i].sprite;
-
-            buyWeapons.Add(sp);
-        }
-
-        for (int i = 0; i < buyClothes.Count; i++) {
-            buyClothes[i].id = i;
-        }
-
-        for (int i = 0; i < buyWeapons.Count; i++) {
-            buyWeapons[i].id = buyClothes.Count + i;
-        }
-
-        scrollBar.value = 100;
-    }
+    
 
     public void OnSellPanel() {
         buyPanel.SetActive(false);
