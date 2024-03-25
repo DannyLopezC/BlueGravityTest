@@ -2,13 +2,23 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviourSingleton<UIManager> {
+    public MenuView MenuView;
     public Button inventoryButton;
+    public bool menuOpened = false;
+    public bool menuChanging = false;
+    public Animator menuAnimator;
 
-    // [BoxGroup("Menu")] public TMP_Text moneyAmount;
+    public bool inUI;
+
+    //public TMP_Text moneyAmount;
+    public TMP_Text hudMoney;
     public Image lifeBar;
+    public Image menuLifeBar;
 
     public Weapon currentWeapon;
     public float playerMaxLife;
@@ -23,12 +33,27 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     public bool inShop;
     public bool shopOpened = false;
 
+
     private void Start() {
         // weaponSprite.sprite = _playerAttackViewComponent.weapons[_playerAttackViewComponent.Equipped].sprite;
         UpdateUIValues();
 
         ShopView.ShopController.SetSellItems();
         ShopView.ShopController.SetBuyItems();
+    }
+
+    public void OnReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void OnExit() => Application.Quit();
+
+    private void Update() {
+        if (!shopOpened && GameManager.Instance.GetInDialogue() && !inShop)
+            if (Input.GetKeyDown(KeyCode.Escape))
+                OnInventory(!menuOpened);
+        if (shopOpened && inShop)
+            if (Input.GetKeyDown(KeyCode.Escape))
+                OnShop(false);
+
+        UpdateUIValues();
     }
 
     public void OnShop(bool open) {
@@ -64,18 +89,42 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     }
 
     public void UpdateUIValues() {
-        // moneyAmount.text = gm.player.money.ToString();
         ShopView.UpdateUIValues();
-        // hudMoney.text = gm.player.money.ToString();
-        //
-        // skinsAmount.text = gm.player.clothes.Count.ToString();
-        // weaponsAmount.text = _playerAttackViewComponent.weapons.Count.ToString();
-        //
-        // damageAmount.text = _playerAttackViewComponent.currentWeapon.damage.ToString();
-        // forceAmount.text = _playerAttackViewComponent.currentWeapon.force.ToString();
-        //
-        // menuLifeBar.fillAmount = gm.player.life / gm.player.maxLife;}
+        hudMoney.text = money.ToString();
+
+        MenuView.UpdateUIValues();
 
         lifeBar.fillAmount = playerLife / playerMaxLife;
+    }
+
+    public void OnInventory(bool open) {
+        if (menuChanging) return;
+
+        Image buttonImage = inventoryButton.gameObject.GetComponent<Image>();
+
+        if (open) {
+            menuChanging = true;
+            buttonImage.DOFade(0, 0.2f)
+                .OnComplete(() => {
+                    inventoryButton.gameObject.SetActive(!open);
+                    menuChanging = false;
+                });
+
+            menuAnimator.SetTrigger("show");
+            inUI = true;
+            menuOpened = true;
+        }
+        else {
+            menuChanging = true;
+            buttonImage.DOFade(100, 0.2f)
+                .OnComplete(() => {
+                    inventoryButton.gameObject.SetActive(!open);
+                    menuChanging = false;
+                });
+
+            menuAnimator.SetTrigger("hide");
+            inUI = false;
+            menuOpened = false;
+        }
     }
 }

@@ -12,6 +12,7 @@ public interface IPlayerController : IFighterController {
     void Heal(float amount);
     void AddMoney(int money);
     void UpdateUIValues();
+    bool GetInDialogue();
 }
 
 public class PlayerController : FighterController, IPlayerController {
@@ -97,5 +98,9 @@ public class PlayerController : FighterController, IPlayerController {
         UIManager.Instance.money = _money;
         UIManager.Instance.playerLife = Life;
         UIManager.Instance.skinsAmount = _view.GetClothesList().Count;
+    }
+
+    public bool GetInDialogue() {
+        return _inDialogue;
     }
 }

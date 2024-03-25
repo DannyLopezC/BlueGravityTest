@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public interface IShopView {
-    // List<ShopItem> GetSellClothes();
-    // List<ShopItem> GetSellWeapons();
     Transform GetSellContent();
     void DestroyGO(GameObject GO);
     void InstantiateGO(GameObject GO, Transform parent);
@@ -37,20 +35,11 @@ public class ShopView : MonoBehaviour, IShopView {
     [SerializeField] private GameObject sellPanel;
     [SerializeField] private GameObject buyPanel;
 
-
     private IShopController _shopController;
 
     public IShopController ShopController {
         get { return _shopController ??= new ShopController(this); }
     }
-
-    // public List<ShopItem> GetSellClothes() {
-    //     return sellClothes;
-    // }
-    //
-    // public List<ShopItem> GetSellWeapons() {
-    //     return sellWeapons;
-    // }
 
     public Transform GetSellContent() {
         return sellContent;

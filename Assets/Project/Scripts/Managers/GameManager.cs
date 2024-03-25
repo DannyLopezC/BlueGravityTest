@@ -30,12 +30,24 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
         return attackView.GetWeapons();
     }
 
+    public int GetClothesId() {
+        return playerView.PlayerController.GetCurrentClothes().id;
+    }
+
+    public int GetWeaponId() {
+        return attackView.AttackController.GetCurrenWeapon().id;
+    }
+
     public void HealPlayer(float amount) {
         playerView.PlayerController.Heal(amount);
     }
 
     public void AddMoney(int money) {
         playerView.PlayerController.AddMoney(money);
+    }
+
+    public bool GetInDialogue() {
+        return playerView.PlayerController.GetInDialogue();
     }
 
     public void DeselectAllSellItems(ShopItem origin) =>
@@ -48,4 +60,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
 
     [Button]
     public void ChangeClothing(int id) => playerView.ChangeClothing(id);
+
+    public void ChangeClothingV2(int nextId) => playerView.ChangeClothingV2(nextId);
 }
