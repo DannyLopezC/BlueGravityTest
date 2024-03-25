@@ -30,6 +30,7 @@ public class AttackView : CollidableView, IAttackView {
 
     private void Awake() {
         AttackController.SetEquipped(0);
+        ChangeWeapon(0);
     }
 
     private void Update() {

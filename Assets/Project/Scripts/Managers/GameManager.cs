@@ -8,6 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviourSingleton<GameManager> {
     [SerializeField] private PlayerView playerView;
     [SerializeField] private AttackView attackView;
+    [SerializeField] private NpcView npcView;
 
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) =>
         FloatingTextManager.Instance.Show(msg, fontSize, color, position, motion, duration);
@@ -18,8 +19,20 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
         DialogueEvent?.Invoke(isStarting);
     }
 
+    public Dialogue GetFirstNpcDialogue() {
+        return npcView.GetFirstDialogue();
+    }
+
+    public Dialogue GetGoodbyeNpcDialogue() {
+        return npcView.GetGoodbyeDialogue();
+    }
+
     public Transform GetPlayerTransform() {
         return playerView.transform;
+    }
+
+    public int GetEquippedWeapon() {
+        return attackView.AttackController.GetCurrentEquipped();
     }
 
     public List<Clothes> GetPlayerClothes() {

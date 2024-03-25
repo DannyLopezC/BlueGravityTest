@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
             shopAnimator.SetTrigger("hide");
             _inShop = false;
             _shopOpened = false;
-            DialogueManager.Instance.EndDialogue(false, NpcController.GoodbyeDialogue);
+            DialogueManager.Instance.EndDialogue(false, GameManager.Instance.GetGoodbyeNpcDialogue());
         }
     }
 

@@ -209,8 +209,8 @@ MonoBehaviour:
   m_text: this is a generic text, just for testing purpose, this actually does not
     say anything at all.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
+  m_sharedMaterial: {fileID: -4617127979369637012, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

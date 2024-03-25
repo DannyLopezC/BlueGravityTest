@@ -248,15 +248,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9f0d77c0a4498e999066b58ce4e31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 0
+  maxLife: 100
   homeTransform: {fileID: 0}
   triggerLength: 1
   chaseLength: 5
   damage: 0
   force: 0
   rotationThreshHold: 0
-  enemyLifeBarSlider: {fileID: 0}
-  enemyLifeBar: {fileID: 0}
+  enemyLifeBarSlider: {fileID: 5971596952868853404}
+  enemyLifeBar: {fileID: 6740579478686899690}
   enemyLifeBarOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &4007664697352474929
 GameObject:

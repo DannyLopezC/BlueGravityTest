@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
+  m_sharedMaterial: {fileID: -4617127979369637012, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -357,8 +357,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 120
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
+  m_sharedMaterial: {fileID: -4617127979369637012, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -626,8 +626,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Reload
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
+  m_sharedMaterial: {fileID: -4617127979369637012, guid: 6c2e004e8753ed64abe176b7554fe01e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1190,13 +1190,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuView: {fileID: 6506267126564719143}
   inventoryButton: {fileID: 8775326398473090336}
-  menuOpened: 0
-  menuChanging: 0
   menuAnimator: {fileID: 8240856758857143251}
   inUI: 0
   hudMoney: {fileID: 4894775681394603825}
   lifeBar: {fileID: 2013655191401936192}
-  menuLifeBar: {fileID: 0}
   currentWeapon: {fileID: 0}
   playerMaxLife: 0
   playerLife: 0
@@ -1204,10 +1201,7 @@ MonoBehaviour:
   skinsAmount: 0
   weaponsAmount: 0
   ShopView: {fileID: 8259430266358001341}
-  shopChanging: 0
   shopAnimator: {fileID: 6062151320915421214}
-  inShop: 0
-  shopOpened: 0
 --- !u!1001 &1020739731215544629
 PrefabInstance:
   m_ObjectHideFlags: 0

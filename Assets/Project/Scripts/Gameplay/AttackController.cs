@@ -7,6 +7,7 @@ public interface IAttackController : ICollidableController {
     Weapon GetCurrenWeapon();
     void Attack();
     void UpdateUIValues();
+    int GetCurrentEquipped();
 }
 
 public class AttackController : CollidableController, IAttackController {
@@ -71,5 +72,9 @@ public class AttackController : CollidableController, IAttackController {
     public void UpdateUIValues() {
         UIManager.Instance.currentWeapon = _currentWeapon;
         UIManager.Instance.skinsAmount = _view.GetWeapons().Count;
+    }
+
+    public int GetCurrentEquipped() {
+        return Equipped;
     }
 }

@@ -26,7 +26,7 @@ public class MenuView : MonoBehaviour, IMenuView {
     }
 
     private void Start() {
-        weaponSprite.sprite = GameManager.Instance.GetPlayerWeapons()[GameManager.Instance.GetWeaponId()].sprite;
+        weaponSprite.sprite = GameManager.Instance.GetPlayerWeapons()[GameManager.Instance.GetEquippedWeapon()].sprite;
     }
 
     public void SettingClothesSprites(int nextId, Clothes replaceClothes) {

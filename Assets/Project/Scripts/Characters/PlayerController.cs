@@ -28,8 +28,8 @@ public class PlayerController : FighterController, IPlayerController {
     private bool _inShop;
 
     public PlayerController(IPlayerView view, float maxLife) : base(view, maxLife) {
-        ClothesId = 0;
         _view = view;
+        ClothesId = 0;
         UIManager.Instance.playerMaxLife = maxLife;
     }
 

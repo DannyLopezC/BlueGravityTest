@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 
 public interface INpcView : ICollidableView {
+    Dialogue GetFirstDialogue();
+    Dialogue GetGoodbyeDialogue();
 }
 
 public class NpcView : CollidableView, INpcView {
+    public Dialogue FirstDialogue;
+    public Dialogue GoodbyeDialogue;
+
     private INpcController _npcController;
 
     public INpcController NpcController {
@@ -22,5 +27,13 @@ public class NpcView : CollidableView, INpcView {
     }
 
     public override void OnTriggerExit2D(Collider2D c) {
+    }
+
+    public Dialogue GetFirstDialogue() {
+        return FirstDialogue;
+    }
+
+    public Dialogue GetGoodbyeDialogue() {
+        return GoodbyeDialogue;
     }
 }

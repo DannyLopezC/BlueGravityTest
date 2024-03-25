@@ -103,7 +103,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: 208e44d7585d37948ae6151abfff3d67, type: 2}
   cooldown: 0.5
-  _animator: {fileID: 0}
+  _animator: {fileID: 4812287533017756026}
 --- !u!61 &3056316620873385663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -298,5 +298,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 0
-  clothes: []
-  spriteRenderer: {fileID: 0}
+  clothes:
+  - {fileID: 11400000, guid: 57b51e7335b99b44fbf379d1bd14f12c, type: 2}
+  spriteRenderer: {fileID: 9155277413862930961}

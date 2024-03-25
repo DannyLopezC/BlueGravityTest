@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IShopController {
@@ -28,6 +29,10 @@ public class ShopController : IShopController {
 
     public ShopController(IShopView view) {
         _view = view;
+        _sellClothes = new List<ShopItem>();
+        _sellWeapons = new List<ShopItem>();
+        _buyClothes = new List<ShopItem>();
+        _buyWeapons = new List<ShopItem>();
     }
 
     public void SetSellItems() {
