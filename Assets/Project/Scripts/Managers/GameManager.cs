@@ -38,7 +38,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
         playerView.PlayerController.AddMoney(money);
     }
 
-    public void DeselectAllSellItems(ShopItem origin) => UIManager.Instance.DeselectAllSellItems(origin);
+    public void DeselectAllSellItems(ShopItem origin) =>
+        UIManager.Instance.ShopView.ShopController.DeselectAllSellItems(origin);
+
+    public void ChangeWeaponV2(int id) => playerView.GetComponentInChildren<AttackView>().ChangeWeaponV2(id);
 
     [Button]
     public void ChangeWeapon(int id) => playerView.GetComponentInChildren<AttackView>().ChangeWeapon(id);

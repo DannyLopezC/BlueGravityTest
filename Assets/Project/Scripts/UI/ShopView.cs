@@ -34,6 +34,9 @@ public class ShopView : MonoBehaviour, IShopView {
     [SerializeField] private List<Weapon> availableWeapons;
     [SerializeField] private List<Clothes> availableClothes;
 
+    [SerializeField] private GameObject sellPanel;
+    [SerializeField] private GameObject buyPanel;
+
 
     private IShopController _shopController;
 
@@ -140,5 +143,23 @@ public class ShopView : MonoBehaviour, IShopView {
 
     public void UpdateUIValues() {
         moneyShopAmount.text = UIManager.Instance.money.ToString();
+    }
+
+    public void OnSellPanel() {
+        buyPanel.SetActive(false);
+        sellPanel.SetActive(true);
+    }
+
+    public void OnBuyPanel() {
+        buyPanel.SetActive(true);
+        sellPanel.SetActive(false);
+    }
+
+    public void OnBuy() {
+        ShopController.OnBuy();
+    }
+
+    public void OnSell() {
+        ShopController.OnSell();
     }
 }

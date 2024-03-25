@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class OldUIManager : MonoBehaviour {
     #region variables
 
-    [BoxGroup("HUD")] public Button inventoryButton;
+    
     [BoxGroup("HUD")] public TMP_Text hudMoney;
 
     [BoxGroup("Menu")] public GameObject menuGo;
@@ -25,22 +25,11 @@ public class OldUIManager : MonoBehaviour {
     [BoxGroup("Menu")] public TMP_Text damageAmount;
     [BoxGroup("Menu")] public TMP_Text forceAmount;
 
-    [BoxGroup("Shop")] public ShopItem currentShopItem;
-    
-    [BoxGroup("Shop")] public Animator shopAnimator;
-    [BoxGroup("Shop")] public bool shopOpened = false;
-    [BoxGroup("Shop")] public bool shopChanging = false;
+    [BoxGroup("Shop")] 
+    [BoxGroup("Shop")] 
+    [BoxGroup("Shop")] 
     [BoxGroup("Shop")] public GameObject shopGo;
 
-    
-
-
-    [BoxGroup("Shop/Selling")] public GameObject sellPanel;
-
-    
-
-    [BoxGroup("Shop/Buying")] public GameObject buyPanel;
-    
     private AttackView _playerAttackViewComponent;
     private GameManager gm;
 
@@ -164,145 +153,6 @@ public class OldUIManager : MonoBehaviour {
 
     public void OnReloadScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     public void OnExit() => Application.Quit();
-
-    #region shop
-
-    public void DeselectAllSellItems(ShopItem origin) {
-        currentShopItem = origin;
-
-        //de activate sell
-        for (int i = 0; i < sellClothes.Count; i++) {
-            if (sellClothes[i].id != origin.id) {
-                sellClothes[i].Selected = false;
-            }
-        }
-
-        for (int i = 0; i < sellWeapons.Count; i++) {
-            if (sellWeapons[i].id != origin.id) {
-                sellWeapons[i].Selected = false;
-            }
-        }
-
-        //de activate buy
-        for (int i = 0; i < buyClothes.Count; i++) {
-            if (buyClothes[i].id != origin.id) {
-                buyClothes[i].Selected = false;
-            }
-        }
-
-        for (int i = 0; i < buyWeapons.Count; i++) {
-            if (buyWeapons[i].id != origin.id) {
-                buyWeapons[i].Selected = false;
-            }
-        }
-    }
-
-    
-
-    public void OnSellPanel() {
-        buyPanel.SetActive(false);
-        sellPanel.SetActive(true);
-    }
-
-    public void OnBuyPanel() {
-        buyPanel.SetActive(true);
-        sellPanel.SetActive(false);
-    }
-
-    public void OnSell() {
-        if (currentShopItem == null) return;
-
-        if (currentShopItem.isWeapon) {
-            if (_playerAttackViewComponent.weapons.Count <= 1) {
-                gm.ShowText($"You have only one item of this type", 50, Color.yellow, gm.player.transform.position,
-                    Vector3.up * Random.Range(30, 50), 2f);
-                return;
-            }
-
-            Weapon w = _playerAttackViewComponent.weapons.Find(_w => _w.id == currentShopItem.itemId);
-            if (w != null) _playerAttackViewComponent.weapons.Remove(w);
-
-            if (_playerAttackViewComponent.weapons.Count == 1) _playerAttackViewComponent.ChangeWeaponV2(0);
-        }
-        else {
-            if (gm.player.clothes.Count <= 1) {
-                gm.ShowText($"You have only one item of this type", 50, Color.yellow, gm.player.transform.position,
-                    Vector3.up * Random.Range(30, 50), 2f);
-                return;
-            }
-
-            Clothes c = gm.player.clothes.Find(_c => _c.id == currentShopItem.itemId);
-            if (c != null) gm.player.clothes.Remove(c);
-
-            if (gm.player.clothes.Count == 1) gm.player.ChangeClothing(0);
-        }
-
-        SetSellItems();
-        SetBuyItems();
-
-        gm.player.money += currentShopItem.priceNum;
-        gm.ShowText($"+{currentShopItem.priceNum} gold", 50, Color.yellow, gm.player.transform.position,
-            Vector3.up * Random.Range(30, 50), 2f);
-    }
-
-    public void OnBuy() {
-        if (currentShopItem == null) return;
-        if (gm.player.money < currentShopItem.priceNum) {
-            gm.ShowText("You have no gold", 50, Color.yellow, gm.player.transform.position,
-                Vector3.up * Random.Range(30, 50), 2f);
-            return;
-        }
-
-        if (currentShopItem.isWeapon) {
-            Weapon W = availableWeapons.Find(_w => _w.id == currentShopItem.itemId);
-            if (W != null) _playerAttackViewComponent.weapons.Add(W);
-        }
-        else {
-            Clothes c = availableClothes.Find(_c => _c.id == currentShopItem.itemId);
-            if (c != null) gm.player.clothes.Add(c);
-        }
-
-        SetSellItems();
-        SetBuyItems();
-
-        gm.player.money -= currentShopItem.priceNum;
-        gm.ShowText($"-{currentShopItem.priceNum} gold", 50, Color.yellow, gm.player.transform.position,
-            Vector3.up * Random.Range(30, 50), 2f);
-    }
-
-    public void OnShop(bool open) {
-        if (shopChanging) return;
-
-        Image buttonImage = inventoryButton.gameObject.GetComponent<Image>();
-
-        if (open) {
-            shopChanging = true;
-            buttonImage.DOFade(0, 0.2f)
-                .OnComplete(() => {
-                    inventoryButton.gameObject.SetActive(!open);
-                    shopChanging = false;
-                });
-
-            shopAnimator.SetTrigger("show");
-            gm.inShop = true;
-            shopOpened = true;
-        }
-        else {
-            shopChanging = true;
-            buttonImage.DOFade(100, 0.2f)
-                .OnComplete(() => {
-                    inventoryButton.gameObject.SetActive(!open);
-                    shopChanging = false;
-                });
-
-            shopAnimator.SetTrigger("hide");
-            gm.inShop = false;
-            shopOpened = false;
-            gm.dialogueManager.EndDialogue(false);
-        }
-    }
-
-    #endregion
 
     public void OnInventory(bool open) {
         if (menuChanging) return;
