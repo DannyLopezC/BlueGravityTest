@@ -9,9 +9,11 @@ public interface IEnemyView : IFighterView, ICollidableView {
     int GetDamage();
     float GetForce();
     float GetRotationThreshHold();
+    float GetMovementGap();
 }
 
 public class EnemyView : FighterView, IEnemyView {
+    [SerializeField] private float movementGap;
     [SerializeField] private Transform homeTransform;
 
     [SerializeField] private float triggerLength = 1;
@@ -59,6 +61,10 @@ public class EnemyView : FighterView, IEnemyView {
 
     public float GetRotationThreshHold() {
         return rotationThreshHold;
+    }
+
+    public float GetMovementGap() {
+        return movementGap;
     }
 
     public void OnCollisionEnter2D(Collision2D c) {

@@ -59,8 +59,12 @@ public class EnemyController : FighterController, IEnemyController {
         float x = objective.x > position.x ? 1 : -1;
         float y = objective.y > position.y ? 1 : -1;
 
+        if (objective.x > position.x) {
+            x = 1;
+        }
+
         if (_chasing) {
-            if (x <= _view.GetRotationThreshHold() - 2f) _view.GetTransform().localScale = Vector3.one;
+            if (x <= _view.GetRotationThreshHold()) _view.GetTransform().localScale = Vector3.one;
             else if (x > _view.GetRotationThreshHold()) _view.GetTransform().localScale = new Vector3(-1, 1, 1);
         }
 
