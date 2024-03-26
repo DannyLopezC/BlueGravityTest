@@ -172,7 +172,7 @@ public class ShopController : IShopController {
                 return;
             }
 
-            Weapon w = GameManager.Instance.GetPlayerWeapons().Find(w => w.id == _currentShopItem.itemId);
+            Weapon w = GameManager.Instance.GetPlayerWeapons().Find(weapon => weapon.id == _currentShopItem.itemId);
             if (w != null) GameManager.Instance.GetPlayerWeapons().Remove(w);
 
             if (GameManager.Instance.GetPlayerWeapons().Count == 1) GameManager.Instance.ChangeWeaponByIndex(0);

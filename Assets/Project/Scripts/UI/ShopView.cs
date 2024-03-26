@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TMPro;
 using Unity.VisualScripting;
@@ -41,6 +42,11 @@ public class ShopView : MonoBehaviour, IShopView {
         get { return _shopController ??= new ShopController(this); }
     }
 
+    private void Start() {
+        ShopController.SetBuyItems();
+        ShopController.SetSellItems();
+    }
+
     public Transform GetSellContent() {
         return sellContent;
     }
@@ -66,7 +72,7 @@ public class ShopView : MonoBehaviour, IShopView {
     }
 
     public void SetSkinsToSell() {
-        for (int i = 0; i < UIManager.Instance.skinsAmount; i++) {
+        for (int i = 0; i < GameManager.Instance.GetPlayerClothes().Count; i++) {
             ShopItem sp = Instantiate(shopClothesPrefab, sellContent).GetComponent<ShopItem>();
             Clothes clothes = GameManager.Instance.GetPlayerClothes()[i];
             sp.price.text = clothes.price.ToString() + "$";
@@ -81,7 +87,7 @@ public class ShopView : MonoBehaviour, IShopView {
     }
 
     public void SetWeaponsToSell() {
-        for (int i = 0; i < UIManager.Instance.weaponsAmount; i++) {
+        for (int i = 0; i < GameManager.Instance.GetPlayerWeapons().Count; i++) {
             ShopItem sp = Instantiate(shopWeaponPrefab, sellContent).GetComponent<ShopItem>();
             Weapon weapon = GameManager.Instance.GetPlayerWeapons()[i];
             sp.damage.text = weapon.damage.ToString();
@@ -137,11 +143,13 @@ public class ShopView : MonoBehaviour, IShopView {
     public void OnSellPanel() {
         buyPanel.SetActive(false);
         sellPanel.SetActive(true);
+        ShopController.SetSellItems();
     }
 
     public void OnBuyPanel() {
         buyPanel.SetActive(true);
         sellPanel.SetActive(false);
+        ShopController.SetBuyItems();
     }
 
     public void OnBuy() {

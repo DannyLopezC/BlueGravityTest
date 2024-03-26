@@ -30,6 +30,8 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviourSi
     }
 
     protected virtual void OnDestroy() {
-        Destroy(_instance);
+        if (_instance == this) {
+            _instance = null;
+        }
     }
 }

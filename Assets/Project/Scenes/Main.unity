@@ -45401,7 +45401,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2930823672960838096, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: money
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3369041249175792685, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: m_Name
@@ -45557,7 +45557,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2930823672960838096, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: money
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3369041249175792685, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: m_Name
