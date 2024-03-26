@@ -56,17 +56,25 @@ public class EnemyController : FighterController, IEnemyController {
         if (!_chasing && _inHome) return;
 
         var position = _view.GetTransform().position;
-        float x = objective.x > position.x ? 1 : -1;
-        float y = objective.y > position.y ? 1 : -1;
+        float x = 0;
+        float y = 0;
 
         if (objective.x > position.x) {
-            x = 1;
+            x = objective.x - _view.GetMovementGap() <= position.x ? 0 : 1;
+        }
+        else if (objective.x < position.x) {
+            x = objective.x + _view.GetMovementGap() >= position.x ? 0 : -1;
         }
 
-        if (_chasing) {
-            if (x <= _view.GetRotationThreshHold()) _view.GetTransform().localScale = Vector3.one;
-            else if (x > _view.GetRotationThreshHold()) _view.GetTransform().localScale = new Vector3(-1, 1, 1);
+        if (objective.y > position.y) {
+            y = objective.y - _view.GetMovementGap() <= position.y ? 0 : 1;
         }
+        else if (objective.y < position.y) {
+            y = objective.y + _view.GetMovementGap() >= position.y ? 0 : -1;
+        }
+
+        if (x == -1) _view.GetTransform().localScale = Vector3.one;
+        else if (x == 1) _view.GetTransform().localScale = new Vector3(-1, 1, 1);
 
         _moveDelta = new Vector3(x, y);
 

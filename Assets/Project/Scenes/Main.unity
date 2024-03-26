@@ -37927,6 +37927,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1240096123}
     - target: {fileID: 6933993980973690712, guid: 010bea2394ceb0940a92c3d9a888bf2b, type: 3}
+      propertyPath: movementGap
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933993980973690712, guid: 010bea2394ceb0940a92c3d9a888bf2b, type: 3}
       propertyPath: homeTransform
       value: 
       objectReference: {fileID: 1240096123}
