@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Home
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -11,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Blocking
+  - Floor
+  - Player
   - 
   - 
   - 
@@ -40,4 +43,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: floor
+    uniqueID: 2998669201
+    locked: 0
+  - name: Interactable
+    uniqueID: 1854564673
+    locked: 0
+  - name: player
+    uniqueID: 3924129151
+    locked: 0
+  - name: design
+    uniqueID: 3661042153
+    locked: 0
+  - name: Weapon
+    uniqueID: 3917515397
     locked: 0

@@ -17,7 +17,6 @@ public class NpcController : CollidableController, INpcController {
     }
 
     public override void OnExitCollide(Collider2D c) {
-        throw new System.NotImplementedException();
     }
 
     private void TriggerDialogue() {

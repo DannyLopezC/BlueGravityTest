@@ -649,8 +649,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8843121078281017167}
+        m_TargetAssemblyTypeName: MenuView, Assembly-CSharp
         m_MethodName: OnBackWeapon
         m_Mode: 1
         m_Arguments:
@@ -1206,8 +1206,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8843121078281017167}
+        m_TargetAssemblyTypeName: MenuView, Assembly-CSharp
         m_MethodName: OnNextWeapon
         m_Mode: 1
         m_Arguments:
@@ -1609,8 +1609,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8843121078281017167}
+        m_TargetAssemblyTypeName: MenuView, Assembly-CSharp
         m_MethodName: OnNextSkin
         m_Mode: 1
         m_Arguments:
@@ -2256,7 +2256,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 311
 --- !u!95 &5957861196266344123
 Animator:
   serializedVersion: 4
@@ -2301,7 +2301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b1e0004a19427f920fe6c1a3129601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinSprite: {fileID: 6429957621462015217}
+  skinSprite: {fileID: 250671865152026259}
   weaponSprite: {fileID: 7988962953493839622}
   menuLifeBar: {fileID: 6980820473502955435}
   damageAmount: {fileID: 1937236954664551573}
@@ -2508,8 +2508,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8843121078281017167}
+        m_TargetAssemblyTypeName: MenuView, Assembly-CSharp
         m_MethodName: OnBackSkin
         m_Mode: 1
         m_Arguments:

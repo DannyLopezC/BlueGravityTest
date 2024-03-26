@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class PlayerController : FighterController, IPlayerController {
         _view = view;
         ClothesId = 0;
         UIManager.Instance.playerMaxLife = maxLife;
+        UpdateUIValues();
     }
 
     private int _clothesId;
@@ -58,7 +60,7 @@ public class PlayerController : FighterController, IPlayerController {
     }
 
     public void Movement() {
-        if (_inUI || _inDialogue || _inShop) return;
+        if (UIManager.Instance._inShop || _inDialogue || UIManager.Instance.inUI) return;
 
         _moveDelta = Vector3.zero;
 
@@ -74,7 +76,7 @@ public class PlayerController : FighterController, IPlayerController {
 
         //push
         _moveDelta += PushDirection;
-        PushDirection = Vector3.Lerp(PushDirection, Vector3.zero, PushRecoverySpeed);
+        PushDirection = Vector3.Lerp(PushDirection, Vector3.zero, _view.GetPushRecovery());
 
         //movement
         _view.GetTransform().Translate(_moveDelta * Time.deltaTime);
@@ -86,12 +88,10 @@ public class PlayerController : FighterController, IPlayerController {
 
     public void Heal(float amount) {
         Life += amount;
-        UpdateUIValues();
     }
 
     public void AddMoney(int money) {
         _money += money;
-        UpdateUIValues();
     }
 
     public void UpdateUIValues() {

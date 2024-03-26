@@ -35,7 +35,7 @@ public class MenuView : MonoBehaviour, IMenuView {
     }
 
     public void SettingWeaponSprites(int nextId, Weapon replaceWeapon) {
-        weaponSprite.sprite = weaponSprite.sprite;
+        weaponSprite.sprite = replaceWeapon.sprite;
         GameManager.Instance.ChangeWeaponV2(nextId);
     }
 

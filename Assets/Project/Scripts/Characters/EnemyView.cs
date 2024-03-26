@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public interface IEnemyView : IFighterView, ICollidableView {
     float GetTriggerLength();
@@ -65,6 +66,7 @@ public class EnemyView : FighterView, IEnemyView {
     }
 
     public void OnTriggerEnter2D(Collider2D c) {
+        EnemyController.OnCollide(c);
     }
 
     public void OnCollisionExit2D(Collision2D c) {
@@ -72,5 +74,15 @@ public class EnemyView : FighterView, IEnemyView {
     }
 
     public void OnTriggerExit2D(Collider2D c) {
+        EnemyController.OnExitCollide(c);
+    }
+
+    protected override void ReceiveDamage(Damage dmg) {
+        EnemyController.ReceiveDamage(dmg);
+
+        GameManager.Instance.ShowText($"{dmg.damageAmount} damage", 35, Color.white, transform.position,
+            Vector3.up * Random.Range(30, 50), 2f);
+
+        if (EnemyController.Death()) gameObject.SetActive(false);
     }
 }

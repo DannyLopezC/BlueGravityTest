@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public interface IPlayerView : IFighterView {
     void ChangeClothing(int id);
@@ -21,6 +22,10 @@ public class PlayerView : FighterView, IPlayerView {
 
     private void Awake() {
         GameManager.Instance.DialogueEvent += OnDialogue;
+    }
+
+    private void Update() {
+        PlayerController.UpdateUIValues();
     }
 
     private void OnDialogue(bool isStarting) {
@@ -49,5 +54,14 @@ public class PlayerView : FighterView, IPlayerView {
 
     private void OnDestroy() {
         GameManager.Instance.DialogueEvent -= OnDialogue;
+    }
+
+    protected override void ReceiveDamage(Damage dmg) {
+        PlayerController.ReceiveDamage(dmg);
+
+        GameManager.Instance.ShowText($"{dmg.damageAmount} damage", 35, Color.white, transform.position,
+            Vector3.up * Random.Range(30, 50), 2f);
+
+        if (PlayerController.Death()) gameObject.SetActive(false);
     }
 }

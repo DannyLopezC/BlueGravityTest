@@ -31,12 +31,15 @@ public class AttackView : CollidableView, IAttackView {
     private void Awake() {
         AttackController.SetEquipped(0);
         ChangeWeapon(0);
+        UIManager.Instance.weaponsAmount = weapons.Count;
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             AttackController.Attack();
         }
+
+        UIManager.Instance.weaponsAmount = weapons.Count;
     }
 
     public void Swing() {
@@ -68,7 +71,7 @@ public class AttackView : CollidableView, IAttackView {
     }
 
     public override void OnTriggerEnter2D(Collider2D c) {
-        throw new NotImplementedException();
+        AttackController.OnCollide(c);
     }
 
     public override void OnCollisionExit2D(Collision2D c) {
@@ -76,7 +79,7 @@ public class AttackView : CollidableView, IAttackView {
     }
 
     public override void OnTriggerExit2D(Collider2D c) {
-        throw new NotImplementedException();
+        AttackController.OnExitCollide(c);
     }
 
     public Transform GetTransform() {

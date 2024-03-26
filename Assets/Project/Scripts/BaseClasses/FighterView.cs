@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public interface IFighterView {
     Transform GetTransform();
+    float GetPushRecovery();
 }
 
 public class FighterView : MonoBehaviour, IFighterView {
+    [SerializeField] protected float _pushRecoverySpeed = 0.2f;
     [SerializeField] protected float maxLife;
 
     private IFighterController _fighterController;
@@ -19,15 +22,14 @@ public class FighterView : MonoBehaviour, IFighterView {
         GameManager.Instance.ShowText($"{dmg.damageAmount} damage", 35, Color.white, transform.position,
             Vector3.up * Random.Range(30, 50), 2f);
 
-        Death();
+        if (FighterController.Death()) gameObject.SetActive(false);
     }
 
     public Transform GetTransform() {
         return transform;
     }
 
-    protected virtual void Death() {
-        GameManager.Instance.ShowText("Defeated", 100, Color.black, transform.position, Vector3.zero, 3f);
-        gameObject.SetActive(false);
+    public float GetPushRecovery() {
+        return _pushRecoverySpeed;
     }
 }

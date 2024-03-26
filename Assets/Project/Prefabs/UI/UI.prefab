@@ -546,8 +546,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 4441752203689946391}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnExit
         m_Mode: 1
         m_Arguments:
@@ -891,8 +891,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 4441752203689946391}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnReloadScene
         m_Mode: 1
         m_Arguments:
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 311
 --- !u!1 &8775326398473090342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,8 +1129,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 4441752203689946391}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnInventory
         m_Mode: 6
         m_Arguments:
@@ -1151,7 +1151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8775326399222643131}
   - component: {fileID: 4441752203689946391}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1293,6 +1293,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1179421489663444571, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754001628434051097, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5280080927682654087, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1324,6 +1332,18 @@ PrefabInstance:
     - target: {fileID: 6636566409480907707, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674588360021538219, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4441752203689946391}
+    - target: {fileID: 6674588360021538219, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674588360021538219, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8023553822457792745, guid: 1158a703230ccd94397d7e57ab883d7a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1510,6 +1530,18 @@ PrefabInstance:
     - target: {fileID: 5620352313031627123, guid: 527f313bbe43cbe4a9873500ea6485fc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429957620992060750, guid: 527f313bbe43cbe4a9873500ea6485fc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4441752203689946391}
+    - target: {fileID: 6429957620992060750, guid: 527f313bbe43cbe4a9873500ea6485fc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429957620992060750, guid: 527f313bbe43cbe4a9873500ea6485fc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6429957621462015216, guid: 527f313bbe43cbe4a9873500ea6485fc, type: 3}
       propertyPath: m_AnchorMax.y

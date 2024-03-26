@@ -44,7 +44,6 @@ public class ChestView : CollectableView, IChestView {
     }
 
     public override void OnCollisionExit2D(Collision2D c) {
-        ChestController.OnExitCollide(c.collider);
     }
 
     public override void OnTriggerExit2D(Collider2D c) {

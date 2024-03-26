@@ -39,7 +39,6 @@ public class AttackController : CollidableController, IAttackController {
     }
 
     public override void OnExitCollide(Collider2D c) {
-        throw new System.NotImplementedException();
     }
 
     public void ChangeWeapon(int equip) {

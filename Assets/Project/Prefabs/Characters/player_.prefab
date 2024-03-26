@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 296095970554101420}
   - component: {fileID: 3056316620873385663}
   - component: {fileID: 4812287533017756026}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 451409331
-  m_SortingLayer: 0
+  m_SortingLayerID: -377451899
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1350488357166194873, guid: a3379a260b6c09f4bb6bd6819ccab7c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 9155277413862930975}
   - component: {fileID: 2221593803991166238}
   - component: {fileID: 8465663091054027150}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Player_
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -224,8 +224,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 303707677
-  m_SortingLayer: 0
+  m_SortingLayerID: -370838145
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 4018074224661003100, guid: 950bb567f5a60394782d3043bdcea73d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -297,7 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5deb9f180eae6c946af811b4eaea535f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 0
+  _pushRecoverySpeed: 0.1
+  maxLife: 20
   clothes:
   - {fileID: 11400000, guid: 57b51e7335b99b44fbf379d1bd14f12c, type: 2}
   spriteRenderer: {fileID: 9155277413862930961}

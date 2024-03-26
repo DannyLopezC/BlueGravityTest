@@ -53,12 +53,14 @@ public class EnemyController : FighterController, IEnemyController {
     }
 
     private void Movement(Vector3 objective) {
+        if (!_chasing && _inHome) return;
+
         var position = _view.GetTransform().position;
         float x = objective.x > position.x ? 1 : -1;
         float y = objective.y > position.y ? 1 : -1;
 
-        if (x != _moveDelta.x) {
-            if (x <= -_view.GetRotationThreshHold()) _view.GetTransform().localScale = Vector3.one;
+        if (_chasing) {
+            if (x <= _view.GetRotationThreshHold() - 2f) _view.GetTransform().localScale = Vector3.one;
             else if (x > _view.GetRotationThreshHold()) _view.GetTransform().localScale = new Vector3(-1, 1, 1);
         }
 
@@ -66,7 +68,7 @@ public class EnemyController : FighterController, IEnemyController {
 
         //push
         _moveDelta += PushDirection;
-        PushDirection = Vector3.Lerp(PushDirection, Vector3.zero, PushRecoverySpeed);
+        PushDirection = Vector3.Lerp(PushDirection, Vector3.zero, _view.GetPushRecovery());
 
         _view.GetTransform().Translate((_moveDelta * Time.deltaTime) / 2);
     }

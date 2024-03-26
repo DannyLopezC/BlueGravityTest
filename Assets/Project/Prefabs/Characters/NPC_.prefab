@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1559792657480930998}
   - component: {fileID: 8394644482632909239}
   - component: {fileID: 2421432517615857462}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: NPC_
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 303707677
-  m_SortingLayer: 0
+  m_SortingLayerID: -370838145
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -4869357254534750094, guid: 950bb567f5a60394782d3043bdcea73d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,3 +146,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4b403327974cb596834acac42ae20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstDialogue:
+    name: Shop's Owner
+    sentences:
+    - Hello! welcome to my shop
+    - How are you doing buddy?
+    - Hey, you can buy whatever you want!
+    - Nice to see you again!
+  GoodbyeDialogue:
+    name: Shop's Owner
+    sentences:
+    - Goodbye, come back soon!
+    - See you later buddy!
+    - Thanks for your purchase!
+    - It was a pleasure, come back whenever you want!

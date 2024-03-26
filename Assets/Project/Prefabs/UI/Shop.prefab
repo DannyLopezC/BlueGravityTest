@@ -132,7 +132,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1034326281111892696
@@ -834,8 +834,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8986090219524202376}
+        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
         m_MethodName: OnSellPanel
         m_Mode: 1
         m_Arguments:
@@ -1398,8 +1398,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8986090219524202376}
+        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
         m_MethodName: OnBuy
         m_Mode: 1
         m_Arguments:
@@ -1886,7 +1886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -137.77007}
+  m_AnchoredPosition: {x: 200, y: -137.77013}
   m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7045508095615446789
@@ -2087,8 +2087,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8986090219524202376}
+        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
         m_MethodName: OnSell
         m_Mode: 1
         m_Arguments:
@@ -2426,8 +2426,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 8986090219524202376}
+        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
         m_MethodName: OnBuyPanel
         m_Mode: 1
         m_Arguments:
@@ -2755,7 +2755,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 311
 --- !u!95 &6488407100089096491
 Animator:
   serializedVersion: 4
@@ -2806,7 +2806,32 @@ MonoBehaviour:
   shopWeaponPrefab: {fileID: 6127445887458467023, guid: 71412ea9473920a4991e8a220aa60a85, type: 3}
   moneyShopAmount: {fileID: 7271112562578212419}
   scrollBar: {fileID: 5507372893837109905}
-  availableWeapons: []
-  availableClothes: []
+  availableWeapons:
+  - {fileID: 11400000, guid: c1f2c32bc3e708245ae70abbbdb69ec2, type: 2}
+  - {fileID: 11400000, guid: 55e92db59d6e8da439ff1b47c35474c9, type: 2}
+  - {fileID: 11400000, guid: 8d516fbcdc7993c42b26e4ec7814f454, type: 2}
+  - {fileID: 11400000, guid: 0e51354d6fd79854a8adba9c3d25b557, type: 2}
+  - {fileID: 11400000, guid: 54bea8899a4484d4db3c5465896dba0a, type: 2}
+  - {fileID: 11400000, guid: 06a4d58b03ba5434ab38df4e864e777e, type: 2}
+  - {fileID: 11400000, guid: b745c8859906a104ebd2e6472b5b5613, type: 2}
+  - {fileID: 11400000, guid: 700d7877ed02534438c56849c3feb293, type: 2}
+  - {fileID: 11400000, guid: e26111ca1b48a714da83743aa0bb5bcb, type: 2}
+  - {fileID: 11400000, guid: bf9de92fe38d5054daa1cfc76a761e38, type: 2}
+  - {fileID: 11400000, guid: 4620966913d1be44fb007f6e1a9a517e, type: 2}
+  - {fileID: 11400000, guid: 28242b077456ad74cbcbef4bf15ba4c8, type: 2}
+  - {fileID: 11400000, guid: 4b0f05dc1dd3df24b9c647e5928b53f4, type: 2}
+  - {fileID: 11400000, guid: 55ce1e850157f834683b3ce29a3328cc, type: 2}
+  - {fileID: 11400000, guid: 76b39a18700dc554da1127e7f77b16b3, type: 2}
+  - {fileID: 11400000, guid: d4e5cd7c896df32469c51716c17e22e7, type: 2}
+  - {fileID: 11400000, guid: 8efecd9e5f5a17d40a30a86b24c97de8, type: 2}
+  - {fileID: 11400000, guid: 208e44d7585d37948ae6151abfff3d67, type: 2}
+  - {fileID: 11400000, guid: f49dc6802cfd4a1469d5eccb19541245, type: 2}
+  availableClothes:
+  - {fileID: 11400000, guid: 57b51e7335b99b44fbf379d1bd14f12c, type: 2}
+  - {fileID: 11400000, guid: 5175546a52750d5479c525cc9676c289, type: 2}
+  - {fileID: 11400000, guid: 7f27599d97b9a1d489e226c328cbf5d6, type: 2}
+  - {fileID: 11400000, guid: 486fd8cd9a77dd8419b57368dab3533c, type: 2}
+  - {fileID: 11400000, guid: 013e1c3bddd1fd649987cf15aa79ded3, type: 2}
+  - {fileID: 11400000, guid: 452be0666d15e014c94fdb35c6a09579, type: 2}
   sellPanel: {fileID: 7006820684190727306}
   buyPanel: {fileID: 3967231678600313191}

@@ -5,32 +5,33 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviourSingleton<UIManager> {
     public MenuView MenuView;
     public Button inventoryButton;
-    private bool _menuOpened = false;
-    private bool _menuChanging = false;
+    [DoNotSerialize] private bool _menuOpened = false;
+    [DoNotSerialize] private bool _menuChanging = false;
     public Animator menuAnimator;
 
-    public bool inUI;
+    [DoNotSerialize] public bool inUI;
 
     //public TMP_Text moneyAmount;
     public TMP_Text hudMoney;
     public Image lifeBar;
 
-    public Weapon currentWeapon;
-    public float playerMaxLife;
-    public float playerLife;
-    public int money;
-    public int skinsAmount;
-    public int weaponsAmount;
+    [DoNotSerialize] public Weapon currentWeapon;
+    [DoNotSerialize] public float playerMaxLife;
+    [DoNotSerialize] public float playerLife;
+    [DoNotSerialize] public int money;
+    [DoNotSerialize] public int skinsAmount;
+    [DoNotSerialize] public int weaponsAmount;
 
     public ShopView ShopView;
-    private bool _shopChanging = false;
+    [DoNotSerialize] private bool _shopChanging = false;
     public Animator shopAnimator;
-    private bool _inShop;
-    private bool _shopOpened = false;
+    [DoNotSerialize] public bool _inShop;
+    [DoNotSerialize] private bool _shopOpened = false;
 
 
     private void Start() {
@@ -44,7 +45,7 @@ public class UIManager : MonoBehaviourSingleton<UIManager> {
     public void OnExit() => Application.Quit();
 
     private void Update() {
-        if (!_shopOpened && GameManager.Instance.GetInDialogue() && !_inShop)
+        if (!_shopOpened && !GameManager.Instance.GetInDialogue() && !_inShop)
             if (Input.GetKeyDown(KeyCode.Escape))
                 OnInventory(!_menuOpened);
         if (_shopOpened && _inShop)

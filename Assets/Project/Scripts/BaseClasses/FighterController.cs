@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface IFighterController {
     void ReceiveDamage(Damage dmg);
+    bool Death();
 }
 
 public class FighterController : IFighterController {
@@ -16,7 +17,6 @@ public class FighterController : IFighterController {
     }
 
     private readonly float _maxLife;
-    protected float PushRecoverySpeed = 0.2f;
 
     //Inmunity
 
@@ -42,5 +42,15 @@ public class FighterController : IFighterController {
 
         if (!(Life <= 0)) return;
         Life = 0;
+    }
+
+    public virtual bool Death() {
+        if (Life <= 0) {
+            GameManager.Instance.ShowText("Defeated", 100, Color.black, _view.GetTransform().position, Vector3.zero,
+                3f);
+            return true;
+        }
+
+        return false;
     }
 }

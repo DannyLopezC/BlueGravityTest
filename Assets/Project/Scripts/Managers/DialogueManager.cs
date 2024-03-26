@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public interface IDialogueManager {
     void StartDialogue(Dialogue dialogue);
@@ -36,6 +38,10 @@ public class DialogueManager : MonoBehaviourSingleton<DialogueManager>, IDialogu
     public Animator animator;
     private static readonly int Show = Animator.StringToHash("show");
     private static readonly int Hide = Animator.StringToHash("hide");
+
+    private void Start() {
+        _sentences = new List<string>();
+    }
 
     public void StartDialogue(Dialogue dialogue) {
         nameText.text = dialogue.name;
@@ -83,10 +89,18 @@ public class DialogueManager : MonoBehaviourSingleton<DialogueManager>, IDialogu
             GameManager.Instance.OnDialogue(false);
         }
         else {
-            if (!_inDialogue) animator.SetTrigger(Show);
+            if (!GameManager.Instance.GetInDialogue()) animator.SetTrigger(Show);
             string s = goodbyeDialogue.sentences[Random.Range(0, goodbyeDialogue.sentences.Count - 1)];
             StopAllCoroutines();
             StartCoroutine(Type(s, true));
         }
+    }
+
+    public void OnShopButton() {
+        EndDialogue(true, GameManager.Instance.GetGoodbyeNpcDialogue());
+    }
+
+    public void OnEndDialogueButton() {
+        EndDialogue(false, GameManager.Instance.GetGoodbyeNpcDialogue());
     }
 }
