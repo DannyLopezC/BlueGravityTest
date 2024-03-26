@@ -45401,7 +45401,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2930823672960838096, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: money
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3369041249175792685, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: m_Name
@@ -45557,7 +45557,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2930823672960838096, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: money
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3369041249175792685, guid: 809e1606a34874d4e9a759246617290a, type: 3}
       propertyPath: m_Name
@@ -45623,6 +45623,10 @@ PrefabInstance:
     - target: {fileID: 6317714999877164225, guid: 010bea2394ceb0940a92c3d9a888bf2b, type: 3}
       propertyPath: m_SortingLayer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525628373318916923, guid: 010bea2394ceb0940a92c3d9a888bf2b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857391365830932716, guid: 010bea2394ceb0940a92c3d9a888bf2b, type: 3}
       propertyPath: startingPos

@@ -38,7 +38,7 @@ public class MenuController : IMenuController {
         }
 
         //going back to first if is the last
-        if (nextId > GameManager.Instance.GetPlayerClothes().Count - 1) nextId = 0;
+        nextId %= GameManager.Instance.GetPlayerClothes().Count;
 
         Clothes nextClothes = GameManager.Instance.GetPlayerClothes()[nextId];
 
@@ -57,7 +57,7 @@ public class MenuController : IMenuController {
         //going to last if is the first
         if (nextId < 0) nextId = GameManager.Instance.GetPlayerWeapons().Count - 1;
 
-        Weapon backWeapon = GameManager.Instance.GetPlayerWeapons().Find(w => w.id == nextId);
+        Weapon backWeapon = GameManager.Instance.GetPlayerWeapons()[nextId];
 
         //setting sprites
         _view.SettingWeaponSprites(nextId, backWeapon);
@@ -72,9 +72,9 @@ public class MenuController : IMenuController {
         }
 
         //going back to first if is the last
-        if (nextId >= GameManager.Instance.GetPlayerWeapons().Count - 1) nextId = 0;
+        nextId %= GameManager.Instance.GetPlayerWeapons().Count;
 
-        Weapon nextWeapon = GameManager.Instance.GetPlayerWeapons().Find(w => w.id == nextId);
+        Weapon nextWeapon = GameManager.Instance.GetPlayerWeapons()[nextId];
 
         //setting sprites
         _view.SettingWeaponSprites(nextId, nextWeapon);

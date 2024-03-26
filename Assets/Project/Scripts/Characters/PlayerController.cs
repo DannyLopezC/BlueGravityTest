@@ -5,8 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IPlayerController : IFighterController {
-    void ChangeClothing(int id);
-    void ChangeClothingV2(int id);
+    void ChangeClothingById(int id);
+    void ChangeClothingByIndex(int id);
     Clothes GetCurrentClothes();
     void Movement();
     void SetInDialogue(bool isStarting);
@@ -41,11 +41,11 @@ public class PlayerController : FighterController, IPlayerController {
         get => _clothesId;
         set {
             _clothesId = Mathf.Clamp(value, 0, _view.GetClothesList().Count - 1);
-            ChangeClothing(_clothesId);
+            ChangeClothingById(_clothesId);
         }
     }
 
-    public void ChangeClothing(int id) {
+    public void ChangeClothingById(int id) {
         _currentClothes = _view.GetClothesList().Find(w => w.id == id);
 
         if (_currentClothes == null) _currentClothes = _view.GetClothesList()[0];
@@ -55,7 +55,7 @@ public class PlayerController : FighterController, IPlayerController {
         return _currentClothes;
     }
 
-    public void ChangeClothingV2(int id) {
+    public void ChangeClothingByIndex(int id) {
         _currentClothes = _view.GetClothesList()[id];
     }
 

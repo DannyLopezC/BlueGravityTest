@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public interface IPlayerView : IFighterView {
-    void ChangeClothing(int id);
+    void ChangeClothingById(int id);
     List<Clothes> GetClothesList();
 }
 
@@ -32,14 +32,14 @@ public class PlayerView : FighterView, IPlayerView {
         PlayerController.SetInDialogue(isStarting);
     }
 
-    public void ChangeClothing(int id) {
-        PlayerController.ChangeClothing(id);
+    public void ChangeClothingById(int id) {
+        PlayerController.ChangeClothingById(id);
 
         spriteRenderer.sprite = PlayerController.GetCurrentClothes().sprite;
     }
 
-    public void ChangeClothingV2(int id) {
-        PlayerController.ChangeClothingV2(id);
+    public void ChangeClothingByIndex(int id) {
+        PlayerController.ChangeClothingByIndex(id);
 
         spriteRenderer.sprite = PlayerController.GetCurrentClothes().sprite;
     }

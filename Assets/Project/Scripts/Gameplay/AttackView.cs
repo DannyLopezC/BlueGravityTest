@@ -30,7 +30,7 @@ public class AttackView : CollidableView, IAttackView {
 
     private void Awake() {
         AttackController.SetEquipped(0);
-        ChangeWeapon(0);
+        ChangeWeaponById(0);
         UIManager.Instance.weaponsAmount = weapons.Count;
     }
 
@@ -54,14 +54,14 @@ public class AttackView : CollidableView, IAttackView {
         return cooldown;
     }
 
-    public void ChangeWeapon(int equip) {
-        AttackController.ChangeWeapon(equip);
+    public void ChangeWeaponById(int equip) {
+        AttackController.ChangeWeaponById(equip);
 
         spriteRenderer.sprite = AttackController.GetCurrenWeapon().sprite;
     }
 
-    public void ChangeWeaponV2(int equip) {
-        AttackController.ChangeWeapon(equip);
+    public void ChangeWeaponByIndex(int equip) {
+        AttackController.ChangeWeaponByIndex(equip);
 
         spriteRenderer.sprite = AttackController.GetCurrenWeapon().sprite;
     }

@@ -2,8 +2,8 @@
 
 public interface IAttackController : ICollidableController {
     void SetEquipped(int weaponIndex);
-    void ChangeWeapon(int equip);
-    void ChangeWeaponV2(int equip);
+    void ChangeWeaponById(int equip);
+    void ChangeWeaponByIndex(int equip);
     Weapon GetCurrenWeapon();
     void Attack();
     void UpdateUIValues();
@@ -23,7 +23,7 @@ public class AttackController : CollidableController, IAttackController {
         get => _equipped;
         set {
             _equipped = Mathf.Clamp(value, 0, _view.GetWeapons().Count - 1);
-            ChangeWeapon(_equipped);
+            ChangeWeaponById(_equipped);
         }
     }
 
@@ -41,14 +41,14 @@ public class AttackController : CollidableController, IAttackController {
     public override void OnExitCollide(Collider2D c) {
     }
 
-    public void ChangeWeapon(int equip) {
+    public void ChangeWeaponById(int equip) {
         _currentWeapon = _view.GetWeapons().Find(w => w.id == equip);
 
         if (_currentWeapon == null) _currentWeapon = _view.GetWeapons()[0];
         UpdateUIValues();
     }
 
-    public void ChangeWeaponV2(int id) {
+    public void ChangeWeaponByIndex(int id) {
         _currentWeapon = _view.GetWeapons()[id];
         UpdateUIValues();
     }

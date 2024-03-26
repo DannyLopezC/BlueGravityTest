@@ -81,7 +81,6 @@ public class ShopView : MonoBehaviour, IShopView {
     }
 
     public void SetWeaponsToSell() {
-        Debug.Log(UIManager.Instance.weaponsAmount);
         for (int i = 0; i < UIManager.Instance.weaponsAmount; i++) {
             ShopItem sp = Instantiate(shopWeaponPrefab, sellContent).GetComponent<ShopItem>();
             Weapon weapon = GameManager.Instance.GetPlayerWeapons()[i];

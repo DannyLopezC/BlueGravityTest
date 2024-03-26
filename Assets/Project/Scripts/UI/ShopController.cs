@@ -175,7 +175,7 @@ public class ShopController : IShopController {
             Weapon w = GameManager.Instance.GetPlayerWeapons().Find(w => w.id == _currentShopItem.itemId);
             if (w != null) GameManager.Instance.GetPlayerWeapons().Remove(w);
 
-            if (GameManager.Instance.GetPlayerWeapons().Count == 1) GameManager.Instance.ChangeWeaponV2(0);
+            if (GameManager.Instance.GetPlayerWeapons().Count == 1) GameManager.Instance.ChangeWeaponByIndex(0);
         }
         else {
             if (GameManager.Instance.GetPlayerClothes().Count <= 1) {
@@ -188,7 +188,7 @@ public class ShopController : IShopController {
             Clothes c = GameManager.Instance.GetPlayerClothes().Find(c => c.id == _currentShopItem.itemId);
             if (c != null) GameManager.Instance.GetPlayerClothes().Remove(c);
 
-            if (GameManager.Instance.GetPlayerClothes().Count == 1) GameManager.Instance.ChangeClothing(0);
+            if (GameManager.Instance.GetPlayerClothes().Count == 1) GameManager.Instance.ChangeClothingById(0);
         }
 
         SetSellItems();

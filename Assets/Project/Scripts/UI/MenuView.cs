@@ -31,12 +31,12 @@ public class MenuView : MonoBehaviour, IMenuView {
 
     public void SettingClothesSprites(int nextId, Clothes replaceClothes) {
         skinSprite.sprite = replaceClothes.sprite;
-        GameManager.Instance.ChangeClothingV2(nextId);
+        GameManager.Instance.ChangeClothingByIndex(nextId);
     }
 
     public void SettingWeaponSprites(int nextId, Weapon replaceWeapon) {
         weaponSprite.sprite = replaceWeapon.sprite;
-        GameManager.Instance.ChangeWeaponV2(nextId);
+        GameManager.Instance.ChangeWeaponByIndex(nextId);
     }
 
     public void OnNextWeapon() => MenuController.OnNextWeapon();

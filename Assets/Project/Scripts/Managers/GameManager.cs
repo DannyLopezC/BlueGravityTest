@@ -66,13 +66,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
     public void DeselectAllSellItems(ShopItem origin) =>
         UIManager.Instance.ShopView.ShopController.DeselectAllSellItems(origin);
 
-    public void ChangeWeaponV2(int id) => playerView.GetComponentInChildren<AttackView>().ChangeWeaponV2(id);
+    public void ChangeWeaponByIndex(int id) => attackView.ChangeWeaponByIndex(id);
 
     [Button]
-    public void ChangeWeapon(int id) => playerView.GetComponentInChildren<AttackView>().ChangeWeapon(id);
+    public void ChangeWeaponById(int id) => attackView.ChangeWeaponById(id);
 
     [Button]
-    public void ChangeClothing(int id) => playerView.ChangeClothing(id);
+    public void ChangeClothingById(int id) => playerView.ChangeClothingById(id);
 
-    public void ChangeClothingV2(int nextId) => playerView.ChangeClothingV2(nextId);
+    public void ChangeClothingByIndex(int nextId) => playerView.ChangeClothingByIndex(nextId);
 }
