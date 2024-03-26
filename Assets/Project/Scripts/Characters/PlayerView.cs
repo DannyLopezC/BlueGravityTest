@@ -53,7 +53,9 @@ public class PlayerView : FighterView, IPlayerView {
     }
 
     private void OnDestroy() {
-        GameManager.Instance.DialogueEvent -= OnDialogue;
+        if (GameManager.HasInstance()) {
+            GameManager.Instance.DialogueEvent -= OnDialogue;
+        }
     }
 
     protected override void ReceiveDamage(Damage dmg) {

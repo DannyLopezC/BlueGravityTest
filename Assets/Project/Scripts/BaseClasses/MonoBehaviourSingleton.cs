@@ -26,7 +26,11 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviourSi
         }
 
         _instance = (T)this;
-        //DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
+    }
+
+    public static bool HasInstance() {
+        return _instance != null;
     }
 
     protected virtual void OnDestroy() {
